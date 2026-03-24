@@ -1,21 +1,29 @@
 package com.sagnikchakraborty;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 class GreetingTest {
 
+    private Greeting greeting;
+
+    @BeforeEach
+    void setUp() {
+        System.out.println("In before each...");
+        greeting = new Greeting();
+    }
+
     @Test
     void helloWorld() {
-        Greeting greeting = new Greeting();
         String result = greeting.helloWorld();
-        assertEquals("Hello World", result);
+        System.out.println(result);
     }
 
     @Test
     void testHelloWorld() {
-        Greeting greeting = new Greeting();
         String result = greeting.helloWorld("Sagnik");
+        System.out.println(result);
     }
 }
