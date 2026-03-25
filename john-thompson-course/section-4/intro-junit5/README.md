@@ -46,3 +46,18 @@ flowchart TD
     AE --> BE
 ```
 
+## Running JUnit 5 tests from command line with Maven
+
+Bash script:
+
+```shell
+./mvnw clean test
+```
+
+For Windows:
+
+```shell
+./mvnw.cmd clean test
+```
+
+Here two goals are combined - `clean` and `test`.
