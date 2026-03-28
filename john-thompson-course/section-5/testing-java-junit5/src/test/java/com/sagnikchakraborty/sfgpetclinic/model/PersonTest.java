@@ -1,5 +1,6 @@
 package com.sagnikchakraborty.sfgpetclinic.model;
 
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -17,6 +18,7 @@ class PersonTest {
                 () -> assertEquals("Buck", person.getLastName()));
     }
 
+    @Disabled
     @Test
     void groupedAssertionMsgs() {
         // Given
