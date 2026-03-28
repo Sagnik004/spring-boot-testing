@@ -163,3 +163,45 @@ void testAssumptionTrueIsReallyTrue() {
     assumeTrue("SAGNIK".equalsIgnoreCase("SAGNIK"));
 }
 ```
+
+### Conditional JUnit Test Execution
+
+- [Documentation](https://docs.junit.org/5.14.3/writing-tests/conditional-test-execution.html)
+- It allows us to either *enable* or *disable* a test class or test method based on certain conditions programmatically.
+- There are many annotations here, few of them are below (environment variables might be the one most used).
+
+**Examples:**
+
+```java
+@EnabledOnOs(OS.MAC)
+@Test
+void testMeOnMacOS() {
+}
+
+@EnabledOnOs(OS.WINDOWS)
+@Test
+void testMeOnWindows() {
+}
+
+@EnabledOnJre(JRE.JAVA_8)
+@Test
+void testMeOnJava8() {
+}
+
+@EnabledOnJre(JRE.JAVA_11)
+@Test
+void testMeOnJava11() {
+}
+
+// @EnabledIfEnvironmentVariable(named = "USER", matches = "Sagnik") // Linux/Mac way
+@EnabledIfEnvironmentVariable(named = "USERDOMAIN", matches = "SAGNIK")
+@Test
+void testIfUserSagnik() {
+}
+
+// @EnabledIfEnvironmentVariable(named = "USER", matches = "John") // Linux/Mac way
+@EnabledIfEnvironmentVariable(named = "USERDOMAIN", matches = "John")
+@Test
+void testIfUserJohn() {
+}
+```
