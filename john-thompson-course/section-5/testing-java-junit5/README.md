@@ -87,8 +87,11 @@ void dependentAssertions() {
 
 ### Skipping JUnit Tests
 
-- We can skip JUnit tests using the `@Disabled` keyword.
+- We can skip JUnit tests using the `@Disabled` annotation.
 - It can be used above method(s) to skip testing those method(s).
 - It can also be used above class(es) to skip testing those class(es).
 - `@Disabled` can optionally take a `value` property as well. Example: `@Disabled(value = "Disabled until we learn Mocking!")`
 
+### JUnit Test Display Names
+
+To give a descriptive name to a test method we can use the `@DisplayName` annotation.
