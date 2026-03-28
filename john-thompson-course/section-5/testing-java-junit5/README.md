@@ -31,4 +31,56 @@ Just a dummy Spring web app type project, but without any of the Spring features
 
 [JUnit 5 documentation for Assertion framework](https://docs.junit.org/5.14.0/api/org.junit.jupiter.api/org/junit/jupiter/api/Assertions.html)
 
+### JUnit 5 Grouped Assertions
 
+Using `assertAll` method it allows multiple assertions to execute together ensuring all are evaluated even if one fails.
+
+**Examples:**
+
+```java
+@Test
+void groupedAssertions() {
+    // Given
+    Person person = new Person(1L, "Joe", "Buck");
+
+    // Then
+    assertAll("Test props set",
+            () -> assertEquals("Joe", person.getFirstName()),
+            () -> assertEquals("Buck", person.getLastName()));
+}
+
+@Test
+void groupedAssertionWithMsg() {
+  // Given
+  Person person = new Person(1L, "Joe", "Buck");
+
+  // Then
+  assertAll("Test props set",
+          () -> assertEquals("Joe2", person.getFirstName(), "First name failed"),
+          () -> assertEquals("Buck2", person.getLastName(), "Last name failed"));
+}
+```
+
+### JUnit 5 Dependent Assertions
+
+When we have nested complex objects then we can use this feature. Example: `Owner` class inheriting from `Person` class.
+
+**Example:**
+
+```java
+@Test
+void dependentAssertions() {
+    Owner owner = new Owner(1L, "Jane", "Buck");
+    owner.setCity("Key West");
+    owner.setTelephone("9875645878");
+
+    assertAll("Properties Test",
+            () -> assertAll("Person Properties",
+                    () -> assertEquals("Jane", owner.getFirstName(), "First name did not match"),
+                    () -> assertEquals("Buck", owner.getLastName())),
+            () -> assertAll("Owner Properties",
+                    () -> assertEquals("Key West", owner.getCity()),
+                    () -> assertEquals("9875645878", owner.getTelephone(), "Telephone did not match"))
+    );
+}
+```
