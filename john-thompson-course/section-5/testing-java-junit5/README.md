@@ -110,3 +110,35 @@ void oopsHandler() {
 }
 ```
 
+### Testing Timeouts
+
+- Asserts that the execution completes before the given timeout is exceeded.
+- Use `assertTimeout` and/or `assertTimeoutPreemptively` assertion methods for this. The difference is:
+  - `assertTimeout` run the full execution and then compare how long it took versus what duration we are expecting. It runs in the same thread.
+  - `assertTimeoutPreemptively` kill the execution if the task is running more than what was specified in duration. It spins up a new thread to run the task.
+- **Very useful to identify potential performance problems**.
+
+**Examples:**
+
+```java
+@Test
+void testTimeout() {
+    assertTimeout(Duration.ofMillis(100), () -> {
+        Thread.sleep(5000);
+        System.out.println("I got here");
+    });
+}
+
+@Disabled
+@Test
+void testTimeoutPreempt() {
+    assertTimeoutPreemptively(Duration.ofMillis(100), () -> {
+        Thread.sleep(5000);
+        System.out.println("I will not make it till here");
+    });
+}
+```
+
+> [!CAUTION]
+> Timeout on the CI server may vary compared to local development machine. Hence, use the timeout value cautiously.
+
