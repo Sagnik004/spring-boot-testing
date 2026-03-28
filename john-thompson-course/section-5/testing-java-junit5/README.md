@@ -142,3 +142,24 @@ void testTimeoutPreempt() {
 > [!CAUTION]
 > Timeout on the CI server may vary compared to local development machine. Hence, use the timeout value cautiously.
 
+### JUnit Assumptions
+
+- Assumptions is a way to conditionally run a test based on *assumptions*.
+- Failed *assumptions* result in test getting **aborted** and not getting failed.
+- Example scenario: if the test depends on something in the current runtime environment (like in CI server or development machine etc.).
+
+**Example:**
+
+```java
+import static org.junit.jupiter.api.Assumptions.assumeTrue;
+
+@Test
+void testAssumptionTrue() {
+    assumeTrue("SAGNIK".equalsIgnoreCase(System.getenv("SCHA_RUNTIME")));
+}
+
+@Test
+void testAssumptionTrueIsReallyTrue() {
+    assumeTrue("SAGNIK".equalsIgnoreCase("SAGNIK"));
+}
+```
