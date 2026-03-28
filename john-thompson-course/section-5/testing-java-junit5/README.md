@@ -205,3 +205,8 @@ void testIfUserSagnik() {
 void testIfUserJohn() {
 }
 ```
+
+## AssertJ
+
+[Documentation](https://assertj.github.io/doc/)
+
