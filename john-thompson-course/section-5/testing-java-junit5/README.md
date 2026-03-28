@@ -95,3 +95,18 @@ void dependentAssertions() {
 ### JUnit Test Display Names
 
 To give a descriptive name to a test method we can use the `@DisplayName` annotation.
+
+### Testing Expected Exceptions
+
+Use the `assertThrows` assertion to test for expected exceptions.
+
+**Example:**
+
+```java
+@Test
+@DisplayName("Test Exception")
+void oopsHandler() {
+    assertThrows(ValueNotFoundException.class, () -> controller.oopsHandler());
+}
+```
+

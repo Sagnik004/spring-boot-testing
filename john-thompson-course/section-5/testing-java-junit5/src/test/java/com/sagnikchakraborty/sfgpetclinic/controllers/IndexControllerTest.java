@@ -26,12 +26,16 @@ class IndexControllerTest {
 
     @Test
     @DisplayName("Test Exception")
-    void oupsHandler() {
+    void oopsHandler() {
         // Performance tip: If we have an expensive operation to generate the error message,
         // then we can put that in a lambda expression. It gets called and evaluated only
         // if assertion fails.
-        assertTrue("notimplemented".equals(controller.oupsHandler()), () -> "This is some expensive " +
+        /*
+        assertTrue("notimplemented".equals(controller.oopsHandler()), () -> "This is some expensive " +
                 "message to build " +
                 "for my test");
+        */
+
+        assertThrows(ValueNotFoundException.class, () -> controller.oopsHandler());
     }
 }
